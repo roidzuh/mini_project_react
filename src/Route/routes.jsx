@@ -5,23 +5,30 @@ import Settings from "../pages/Settings";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PageNotFound from "../pages/PageNotFound";
+import AppLayout from "../components/AppLayout";
 
 export const routeList = [
   {
     path: "/",
-    element: <Navigate replace to="/dashboard" />,
-  },
-  {
-    path: "/dashboard",
-    element: <Dashboard />,
-  },
-  {
-    path: "/users",
-    element: <Users />,
-  },
-  {
-    path: "/settings",
-    element: <Settings />,
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Navigate replace to="/dashboard" />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "/users",
+        element: <Users />,
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
+      },
+    ],
   },
   {
     path: "/login",
