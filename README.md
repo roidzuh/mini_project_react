@@ -11,5 +11,6 @@ Daftar library yang digunakan dalam project :
 -React Router Dom
 -Axios
 -styled-components
+-React Icons
 
 Daftar fitur tambahan yang dibuat dalam project :
