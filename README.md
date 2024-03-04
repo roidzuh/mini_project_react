@@ -10,5 +10,6 @@ Currently, two official plugins are available:
 Daftar library yang digunakan dalam project :
 -React Router Dom
 -Axios
+-styled-components
 
 Daftar fitur tambahan yang dibuat dalam project :
