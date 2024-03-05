@@ -6,11 +6,16 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PageNotFound from "../pages/PageNotFound";
 import AppLayout from "../components/AppLayout";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const routeList = [
   {
     path: "/",
-    element: <AppLayout />,
+    element: (
+      <ProtectedRoute>
+        <AppLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "/",
