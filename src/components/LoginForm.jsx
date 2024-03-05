@@ -4,6 +4,7 @@ import Button from "./Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Spinner from "./Spinner";
+import toast from "react-hot-toast";
 
 const FormStyled = styled.form`
   width: 50%;
@@ -59,7 +60,8 @@ const LoginForm = () => {
       })
       .catch((err) => {
         setIsLoading(false);
-        console.log(err.response);
+        console.log(err?.response);
+        toast.error(err?.response?.data?.error);
       });
   };
 
