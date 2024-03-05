@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import Button from "./Button";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Spinner from "./Spinner";
 import toast from "react-hot-toast";
 
@@ -87,9 +87,14 @@ const LoginForm = () => {
           onChange={handleChange}
         />
       </WrapperStyled>
-      <Button type={"submit"} disabled={isLoading}>
-        {isLoading ? <Spinner /> : "Login"}
-      </Button>
+      <WrapperStyled>
+        <Button type={"submit"} disabled={isLoading}>
+          {isLoading ? <Spinner /> : "Login"}
+        </Button>
+      </WrapperStyled>
+      <p>
+        Don&apos;t have account? <Link to="/register">Register</Link>
+      </p>
     </FormStyled>
   );
 };
