@@ -1,4 +1,9 @@
+import { useState } from "react";
 import styled from "styled-components";
+import Button from "./Button";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Spinner from "./Spinner";
 
 const FormStyled = styled.form`
   width: 50%;
@@ -30,16 +35,59 @@ const InputStyled = styled.input`
 `;
 
 const LoginForm = () => {
+  const [login, setLogin] = useState({ email: "", password: "" });
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setLogin({ ...login, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+    axios
+      .post("https://reqres.in/api/login", login)
+      .then((res) => {
+        setIsLoading(false);
+        const token = res?.data?.token;
+        localStorage.setItem("access_token", token);
+        if (token) {
+          navigate("/dashboard");
+        }
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        console.log(err.response);
+      });
+  };
+
   return (
-    <FormStyled>
+    <FormStyled onSubmit={handleSubmit}>
       <WrapperStyled>
         <LabelStyled htmlFor="email">Email address</LabelStyled>
-        <InputStyled type="email" placeholder="Email" />
+        <InputStyled
+          name="email"
+          type="email"
+          placeholder="Email"
+          disabled={isLoading}
+          onChange={handleChange}
+        />
       </WrapperStyled>
       <WrapperStyled>
         <LabelStyled htmlFor="password">Password</LabelStyled>
-        <InputStyled type="password" placeholder="Password" />
+        <InputStyled
+          name="password"
+          type="password"
+          placeholder="Password"
+          disabled={isLoading}
+          onChange={handleChange}
+        />
       </WrapperStyled>
+      <Button type={"submit"} disabled={isLoading}>
+        {isLoading ? <Spinner /> : "Login"}
+      </Button>
     </FormStyled>
   );
 };
