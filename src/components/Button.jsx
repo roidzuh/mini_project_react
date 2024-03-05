@@ -14,10 +14,17 @@ const StyledButton = styled.button`
     background-color: #007ba3;
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #ccc;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+    color: #505050;
+  }
 `;
-const Button = ({ children, onClick, type = "button" }) => {
+const Button = ({ children, onClick, disabled, type = "button" }) => {
   return (
-    <StyledButton type={type} onClick={onClick}>
+    <StyledButton type={type} onClick={onClick} disabled={disabled}>
       {children}
     </StyledButton>
   );
