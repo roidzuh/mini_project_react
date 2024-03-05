@@ -12,5 +12,6 @@ Daftar library yang digunakan dalam project :
 -Axios
 -styled-components
 -React Icons
+-React Hot Toast
 
 Daftar fitur tambahan yang dibuat dalam project :
