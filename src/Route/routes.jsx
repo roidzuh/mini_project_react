@@ -7,6 +7,7 @@ import Register from "../pages/Register";
 import PageNotFound from "../pages/PageNotFound";
 import AppLayout from "../components/AppLayout";
 import ProtectedRoute from "./ProtectedRoute";
+import UserDetail from "../components/UserDetail";
 
 export const routeList = [
   {
@@ -24,6 +25,10 @@ export const routeList = [
       {
         path: "/dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "/user/:id",
+        element: <UserDetail />,
       },
       {
         path: "/users",
