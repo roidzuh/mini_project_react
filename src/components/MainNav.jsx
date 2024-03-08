@@ -50,9 +50,9 @@ const MainNav = () => {
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/settings">
+          <StyledNavLink to="/account">
             <HiOutlineCog6Tooth />
-            <span>Settings</span>
+            <span>Account</span>
           </StyledNavLink>
         </li>
       </StyledUl>
