@@ -3,6 +3,7 @@ import Button from "./Button";
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import User from "./User";
+import Spinner from "./Spinner";
 
 const StyledH1 = styled.h1`
   margin-bottom: 1rem;
@@ -23,6 +24,14 @@ const StyledUserList = styled.div`
   padding: 2rem;
 `;
 
+const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+`;
+
 const StyledDiv = styled.div`
   display: flex;
   align-items: center;
@@ -33,6 +42,7 @@ const StyledDiv = styled.div`
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState({
     per_Page: 0,
     total: 0,
@@ -41,9 +51,11 @@ const UserList = () => {
   });
 
   const getUserList = useCallback(() => {
+    setLoading(true);
     axios
       .get(`https://reqres.in/api/users?page=${pagination.page}`)
       .then((res) => {
+        setLoading(false);
         setUsers(res.data.data);
         setPagination({
           per_Page: res.data.per_page,
@@ -51,6 +63,10 @@ const UserList = () => {
           total_pages: res.data.total_pages,
           page: res.data.page,
         });
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err.response);
       });
   }, [pagination.page]);
 
@@ -76,11 +92,17 @@ const UserList = () => {
     <>
       <StyledH1>Dashboard</StyledH1>
       <StyledContainer>
-        <StyledUserList>
-          {users.map((user) => (
-            <User key={user.id} user={user} />
-          ))}
-        </StyledUserList>
+        {loading ? (
+          <StyledWrapper>
+            <Spinner />
+          </StyledWrapper>
+        ) : (
+          <StyledUserList>
+            {users.map((user) => (
+              <User key={user.id} user={user} />
+            ))}
+          </StyledUserList>
+        )}
         <StyledDiv>
           <Button onClick={handleBack} disabled={pagination.page === 1}>
             Back
