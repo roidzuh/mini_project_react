@@ -8,6 +8,7 @@ import PageNotFound from "../pages/PageNotFound";
 import AppLayout from "../components/AppLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import UserDetail from "../components/UserDetail";
+import ProtectedLoginRegister from "./ProtectedLoginRegister";
 
 export const routeList = [
   {
@@ -42,11 +43,20 @@ export const routeList = [
   },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <ProtectedLoginRegister>
+        {" "}
+        <Login />
+      </ProtectedLoginRegister>
+    ),
   },
   {
     path: "/register",
-    element: <Register />,
+    element: (
+      <ProtectedLoginRegister>
+        <Register />
+      </ProtectedLoginRegister>
+    ),
   },
   {
     path: "*",
