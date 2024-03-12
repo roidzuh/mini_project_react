@@ -1,23 +1,31 @@
 import styled from "styled-components";
 import RegistForm from "../components/RegistForm";
+import WafeContainer from "../components/WafeContainer";
+import Logo from "../components/Logo";
 
-const LoginStyled = styled.main`
-  background-color: #eeeeee;
+const LogoContainer = styled.div`
+  flex: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 2rem;
+  align-items: center;
+  background: #3f51b5;
+  color: #ffffff;
 
-  min-height: 100vh;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Register = () => {
   return (
-    <LoginStyled>
-      <h1>Create Account</h1>
-      <RegistForm />
-    </LoginStyled>
+    <WafeContainer>
+      <div>
+        <LogoContainer>
+          <Logo />
+        </LogoContainer>
+        <RegistForm />
+      </div>
+    </WafeContainer>
   );
 };
 
