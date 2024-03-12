@@ -1,19 +1,7 @@
 import styled from "styled-components";
 import Logo from "../components/Logo";
 import LoginForm from "../components/LoginForm";
-
-const PageContainer = styled.div`
-  background: #f5f5f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
-
-const ContentContainer = styled.div`
-  display: flex;
-  width: 80%;
-`;
+import WafeContainer from "../components/WafeContainer";
 
 const LogoContainer = styled.div`
   flex: 1;
@@ -23,21 +11,21 @@ const LogoContainer = styled.div`
   background: #3f51b5;
   color: #ffffff;
 
-  @media (max-width: 48rem) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
 
 const Login = () => {
   return (
-    <PageContainer>
-      <ContentContainer>
+    <WafeContainer>
+      <div>
         <LogoContainer>
           <Logo />
         </LogoContainer>
         <LoginForm />
-      </ContentContainer>
-    </PageContainer>
+      </div>
+    </WafeContainer>
   );
 };
 
