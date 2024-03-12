@@ -2,24 +2,42 @@ import styled from "styled-components";
 import Logo from "../components/Logo";
 import LoginForm from "../components/LoginForm";
 
-const LoginStyled = styled.main`
-  background-color: #eeeeee;
+const PageContainer = styled.div`
+  background: #f5f5f5;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 2rem;
+  align-items: center;
+  height: 100vh;
+`;
 
-  min-height: 100vh;
+const ContentContainer = styled.div`
+  display: flex;
+  width: 80%;
+`;
+
+const LogoContainer = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #3f51b5;
+  color: #ffffff;
+
+  @media (max-width: 48rem) {
+    display: none;
+  }
 `;
 
 const Login = () => {
   return (
-    <LoginStyled>
-      <Logo />
-      <h1>Login to your account</h1>
-      <LoginForm />
-    </LoginStyled>
+    <PageContainer>
+      <ContentContainer>
+        <LogoContainer>
+          <Logo />
+        </LogoContainer>
+        <LoginForm />
+      </ContentContainer>
+    </PageContainer>
   );
 };
 

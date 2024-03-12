@@ -1,38 +1,16 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 import styled from "styled-components";
 import Button from "./Button";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
 import Spinner from "./Spinner";
-import toast from "react-hot-toast";
+import Form from "./Form";
+import Input from "./Input";
 
-const FormStyled = styled.form`
-  width: 50%;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 2.4rem 4rem;
-  border-radius: 0.5rem;
-`;
-
-const WrapperStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  padding: 1.2rem 0;
-`;
-
-const LabelStyled = styled.label`
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #505050;
-`;
-
-const InputStyled = styled.input`
-  border: 1px solid #ccc;
-  background-color: #f5f5f5;
-  border-radius: 0.2rem;
-  padding: 0.8rem 1.2rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+const Title = styled.h1`
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
 `;
 
 const LoginForm = () => {
@@ -66,36 +44,31 @@ const LoginForm = () => {
   };
 
   return (
-    <FormStyled onSubmit={handleSubmit}>
-      <WrapperStyled>
-        <LabelStyled htmlFor="email">Email address</LabelStyled>
-        <InputStyled
-          name="email"
-          type="email"
-          placeholder="Email"
-          disabled={isLoading}
-          onChange={handleChange}
-        />
-      </WrapperStyled>
-      <WrapperStyled>
-        <LabelStyled htmlFor="password">Password</LabelStyled>
-        <InputStyled
-          name="password"
-          type="password"
-          placeholder="Password"
-          disabled={isLoading}
-          onChange={handleChange}
-        />
-      </WrapperStyled>
-      <WrapperStyled>
-        <Button type={"submit"} disabled={isLoading}>
-          {isLoading ? <Spinner /> : "Login"}
-        </Button>
-      </WrapperStyled>
+    <Form onSubmit={handleSubmit}>
+      <Title>Login</Title>
+      <Input
+        label="Email"
+        name="email"
+        type="text"
+        placeholder="Enter your email"
+        disabled={isLoading}
+        onChange={handleChange}
+      />
+      <Input
+        label="Password"
+        name="password"
+        type="password"
+        placeholder="Enter your password"
+        disabled={isLoading}
+        onChange={handleChange}
+      />
+      <Button type={"submit"} disabled={isLoading}>
+        {isLoading ? <Spinner /> : "Login"}
+      </Button>
       <p>
         Don&apos;t have account? <Link to="/register">Register</Link>
       </p>
-    </FormStyled>
+    </Form>
   );
 };
 
