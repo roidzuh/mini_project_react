@@ -24,6 +24,7 @@ const Input = ({ label, type, placeholder, name, disabled, onChange }) => {
     <InputContainer>
       <StyledLabel htmlFor={name}>{label}</StyledLabel>
       <StyledInputField
+        id={name}
         type={type}
         placeholder={placeholder}
         name={name}
