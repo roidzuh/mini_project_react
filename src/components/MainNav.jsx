@@ -42,11 +42,6 @@ const MainNav = () => {
             Users
           </StyledNavLink>
         </NavItem>
-        <NavItem>
-          <StyledNavLink to="/account" activeclassname="active">
-            Account
-          </StyledNavLink>
-        </NavItem>
       </NavList>
     </nav>
   );
