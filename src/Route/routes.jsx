@@ -1,7 +1,6 @@
 import { Navigate } from "react-router-dom";
 import Dashboard from "../pages/Dashboard";
 import Users from "../pages/Users";
-import Account from "../pages/Account";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PageNotFound from "../pages/PageNotFound";
@@ -34,10 +33,6 @@ export const routeList = [
       {
         path: "/users",
         element: <Users />,
-      },
-      {
-        path: "/account",
-        element: <Account />,
       },
     ],
   },
