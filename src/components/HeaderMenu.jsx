@@ -17,7 +17,7 @@ const StyledHeaderMenu = styled.button`
 const HeaderMenu = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("access_token");
+    localStorage.removeItem("access_token", "user");
     navigate("/login");
   };
 
