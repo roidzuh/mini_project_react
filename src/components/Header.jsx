@@ -1,23 +1,78 @@
-import styled from "styled-components";
+import { useState } from "react";
 import UserAvatar from "./UserAvatar";
 import HeaderMenu from "./HeaderMenu";
+import Logo from "./Logo";
+import MainNav from "./MainNav";
+import styled from "styled-components";
+import { HiXMark } from "react-icons/hi2";
+import { HiOutlineBars3 } from "react-icons/hi2";
 
-const StyledHeader = styled.header`
+const HeaderStyle = styled.header`
   background-color: #fff;
-  padding: 1rem 4rem;
-  border-bottom: 1px solid #ccc;
-
+  padding: 1rem 2rem;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
 `;
+
+const BurgerButton = styled.button`
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const NavContainer = styled.div`
+  display: flex;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileNavContainer = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <StyledHeader>
-      <UserAvatar />
-      <HeaderMenu />
-    </StyledHeader>
+    <>
+      <HeaderStyle>
+        <Logo />
+        <NavContainer>
+          <MainNav />
+          <UserAvatar />
+          <HeaderMenu />
+        </NavContainer>
+        <BurgerButton onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <HiXMark /> : <HiOutlineBars3 />}
+        </BurgerButton>
+      </HeaderStyle>
+      {isOpen && (
+        <MobileNavContainer>
+          <MainNav />
+
+          <UserAvatar />
+          <HeaderMenu />
+        </MobileNavContainer>
+      )}
+    </>
   );
 };
 

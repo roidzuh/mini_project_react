@@ -1,61 +1,53 @@
 import { NavLink } from "react-router-dom";
-import {
-  HiOutlineHome,
-  HiOutlineUserPlus,
-  HiOutlineCog6Tooth,
-} from "react-icons/hi2";
 import styled from "styled-components";
 
-const StyledUl = styled.ul`
+const NavList = styled.ul`
   display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+  list-style-type: none;
+`;
+
+const NavItem = styled.li`
+  padding: 1rem;
 `;
 
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
+  color: #333;
+  font-weight: bold;
   font-size: 1.2rem;
-  font-weight: 500;
-  color: #505050;
-  padding: 1.2rem 3rem;
-  transition: all 0.3s ease-in-out;
+  padding: 0.5rem;
+  transition: background-color 0.3s;
 
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-
-  &:hover,
-  &:active,
-  &.active:link {
-    color: #0e0e0e;
+  &:hover {
     background-color: #f0f0f0;
     border-radius: 0.4rem;
+  }
+
+  &.active {
+    color: #009ecb;
   }
 `;
 
 const MainNav = () => {
   return (
     <nav>
-      <StyledUl>
-        <li>
-          <StyledNavLink to="/dashboard">
-            <HiOutlineHome />
-            <span>Home</span>
+      <NavList>
+        <NavItem>
+          <StyledNavLink to="/dashboard" activeclassname="active">
+            Home
           </StyledNavLink>
-        </li>
-        <li>
-          <StyledNavLink to="/users">
-            <HiOutlineUserPlus />
-            <span>Users</span>
+        </NavItem>
+        <NavItem>
+          <StyledNavLink to="/users" activeclassname="active">
+            Users
           </StyledNavLink>
-        </li>
-        <li>
-          <StyledNavLink to="/account">
-            <HiOutlineCog6Tooth />
-            <span>Account</span>
+        </NavItem>
+        <NavItem>
+          <StyledNavLink to="/account" activeclassname="active">
+            Account
           </StyledNavLink>
-        </li>
-      </StyledUl>
+        </NavItem>
+      </NavList>
     </nav>
   );
 };
