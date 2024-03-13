@@ -94,7 +94,7 @@ const UserDetail = () => {
                 <Label>First name: {user.first_name}</Label>
                 <Label>Last name: {user.last_name}</Label>
                 <Label>Email: {user.email}</Label>
-                <BackButton to="/users">Back</BackButton>
+                <BackButton to="/">Back</BackButton>
               </UserDetails>
             </>
           )}
