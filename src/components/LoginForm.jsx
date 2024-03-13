@@ -32,6 +32,7 @@ const LoginForm = () => {
         setIsLoading(false);
         const token = res?.data?.token;
         localStorage.setItem("access_token", token);
+        localStorage.setItem("user", login.email);
         if (token) {
           navigate("/dashboard");
         }
