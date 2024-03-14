@@ -4,6 +4,7 @@ import Button from "./Button";
 import Form from "./Form";
 import Input from "./Input";
 import styled from "styled-components";
+import toast from "react-hot-toast";
 
 const StyledH1 = styled.h1`
   margin-bottom: 1rem;
@@ -26,6 +27,12 @@ const CreateUser = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!userData.name.trim() || !userData.job.trim()) {
+      toast.error("Name and Job cannot be empty");
+      return;
+    }
+
     setLoading(true);
     axios
       .post("https://reqres.in/api/users", userData)
@@ -33,6 +40,7 @@ const CreateUser = () => {
         console.log(res);
         setUserData({ name: "", job: "" });
         setLoading(false);
+        toast.success("User created successfully");
       })
       .catch((err) => {
         console.log(err.response);
