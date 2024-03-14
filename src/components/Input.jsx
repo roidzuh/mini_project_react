@@ -21,7 +21,15 @@ const StyledInputField = styled.input`
   ${(props) => props.disabled && "opacity: 0.5;"}
 `;
 
-const Input = ({ label, type, placeholder, name, disabled, onChange }) => {
+const Input = ({
+  label,
+  type,
+  placeholder,
+  name,
+  disabled,
+  onChange,
+  value,
+}) => {
   return (
     <InputContainer>
       <StyledLabel htmlFor={name}>{label}</StyledLabel>
@@ -30,6 +38,7 @@ const Input = ({ label, type, placeholder, name, disabled, onChange }) => {
         type={type}
         placeholder={placeholder}
         name={name}
+        value={value}
         disabled={disabled}
         onChange={onChange}
       />
