@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-  width: 100%;
+  width: ${({ size }) => (size === "small" ? "8rem" : "100%")};
   padding: 0.8rem;
   background-color: var(--button-color);
   color: #fff;
@@ -23,9 +23,15 @@ const StyledButton = styled.button`
     color: #505050;
   }
 `;
-const Button = ({ children, onClick, disabled, type = "button" }) => {
+const Button = ({
+  children,
+  onClick,
+  disabled,
+  type = "button",
+  size = "large",
+}) => {
   return (
-    <StyledButton type={type} onClick={onClick} disabled={disabled}>
+    <StyledButton type={type} onClick={onClick} disabled={disabled} size={size}>
       {children}
     </StyledButton>
   );
