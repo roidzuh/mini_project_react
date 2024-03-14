@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const StyledForm = styled.form`
+  max-width: 800px;
+  margin: 0 auto;
   flex: 1;
   background: var(--background-color);
   border-radius: 1rem;
