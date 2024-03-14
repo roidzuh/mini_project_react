@@ -26,6 +26,7 @@ const Avatar = styled.img`
   border-radius: 50%;
   margin: 0 auto 1rem;
   display: block;
+  object-fit: cover;
 `;
 
 const UserDetails = styled.div`
