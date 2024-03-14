@@ -4,6 +4,7 @@ import { routeList } from "./Route/routes";
 import { Toaster } from "react-hot-toast";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { ThemeProvider } from "./context/ThemeContext";
 
 const App = () => {
   const element = useRoutes(routeList);
@@ -16,10 +17,10 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <ThemeProvider>
       {element}
       <Toaster />
-    </>
+    </ThemeProvider>
   );
 };
 
