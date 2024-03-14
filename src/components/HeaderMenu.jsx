@@ -23,8 +23,8 @@ const HeaderMenu = () => {
   const { theme, toggleTheme } = useTheme();
   const handleLogout = () => {
     localStorage.removeItem("access_token");
-    toggleTheme("light");
     navigate("/login");
+    theme === "dark" ? toggleTheme() : null;
   };
 
   return (
