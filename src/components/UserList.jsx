@@ -1,9 +1,9 @@
 import axios from "axios";
-import Button from "./Button";
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import UserCard from "./UserCard";
 import Spinner from "./Spinner";
+import Pagination from "./Pagination";
 
 const StyledH1 = styled.h1`
   margin-bottom: 1rem;
@@ -69,6 +69,13 @@ const UserList = () => {
     });
   };
 
+  const handlePageChange = (newPage) => {
+    setPagination({
+      ...pagination,
+      page: newPage,
+    });
+  };
+
   useEffect(() => {
     getUserList();
   }, [getUserList]);
@@ -81,24 +88,24 @@ const UserList = () => {
           <Spinner />
         </StyledDiv>
       ) : (
-        <StyledUserList>
-          {users.map((user) => (
-            <UserCard key={user.id} user={user} />
-          ))}
-        </StyledUserList>
+        <>
+          <StyledUserList>
+            {users.map((user) => (
+              <UserCard key={user.id} user={user} />
+            ))}
+          </StyledUserList>
+          <StyledDiv>
+            <Pagination
+              page={pagination.page}
+              totalPages={pagination.total_pages}
+              onBack={handleBack}
+              onNext={handleNext}
+              numbers
+              onPageChange={handlePageChange}
+            />
+          </StyledDiv>
+        </>
       )}
-      <StyledDiv>
-        <Button onClick={handleBack} disabled={pagination.page === 1}>
-          Back
-        </Button>
-        <span>{pagination.page}</span>
-        <Button
-          onClick={handleNext}
-          disabled={pagination.page === pagination.total_pages}
-        >
-          Next
-        </Button>
-      </StyledDiv>
     </>
   );
 };
