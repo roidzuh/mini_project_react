@@ -44,14 +44,14 @@ const BackButton = styled(Link)`
   display: inline-block;
   padding: 0.5rem 1rem;
   margin-top: 1rem;
-  background-color: #009ecb;
+  background-color: var(--button-color);
   color: white;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #007bff;
+    background-color: var(--button-hover-color);
   }
 `;
 
