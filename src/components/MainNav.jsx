@@ -12,14 +12,14 @@ const NavItem = styled.li`
 
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
-  color: #333;
+  color: var(--text-color);
   font-weight: bold;
   font-size: 1.2rem;
   padding: 0.5rem;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #f0f0f0;
+    background-color: #f5f5f5;
     border-radius: 0.4rem;
   }
 

@@ -3,6 +3,12 @@ import axios from "axios";
 import Button from "./Button";
 import Form from "./Form";
 import Input from "./Input";
+import styled from "styled-components";
+
+const StyledH1 = styled.h1`
+  margin-bottom: 1rem;
+  color: var(--text-color);
+`;
 
 const CreateUser = () => {
   const [userData, setUserData] = useState({
@@ -35,27 +41,30 @@ const CreateUser = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Input
-        label="Name"
-        name="name"
-        type="text"
-        value={userData.name}
-        onChange={handleChange}
-      />
+    <>
+      <StyledH1>Create User</StyledH1>
+      <Form onSubmit={handleSubmit}>
+        <Input
+          label="Name"
+          name="name"
+          type="text"
+          value={userData.name}
+          onChange={handleChange}
+        />
 
-      <Input
-        label="Job"
-        name="job"
-        type="text"
-        value={userData.job}
-        onChange={handleChange}
-      />
+        <Input
+          label="Job"
+          name="job"
+          type="text"
+          value={userData.job}
+          onChange={handleChange}
+        />
 
-      <Button type={"submit"} disabled={loading}>
-        Submit
-      </Button>
-    </Form>
+        <Button type={"submit"} disabled={loading}>
+          Submit
+        </Button>
+      </Form>
+    </>
   );
 };
 

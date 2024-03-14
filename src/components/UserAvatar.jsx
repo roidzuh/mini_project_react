@@ -4,10 +4,11 @@ const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-right: 0.8rem;
 `;
 
 const StyledSpan = styled.span`
-  color: #505050;
+  color: var(--text-color);
 `;
 
 const UserAvatar = () => {

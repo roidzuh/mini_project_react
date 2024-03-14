@@ -7,13 +7,15 @@ const InputContainer = styled.div`
 `;
 
 const StyledLabel = styled.label`
+  color: var(--text-color);
   font-size: 16px;
   margin-bottom: 8px;
 `;
 
 const StyledInputField = styled.input`
+  background-color: var(--secondary-background-color);
   padding: 12px;
-  border: 1px solid #dddddd;
+  border: 1px solid #595959;
   border-radius: 4px;
   box-sizing: border-box;
   ${(props) => props.disabled && "opacity: 0.5;"}

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledContainer = styled(Link)`
-  background-color: #fff;
+  background-color: var(--secondary-background-color);
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem;
@@ -13,11 +13,13 @@ const StyledContainer = styled(Link)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #333;
+  color: var(--text-color);
   text-decoration: none;
+  transition: all 0.3s ease-in-out;
 
   &:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
   }
 `;
 
@@ -39,7 +41,7 @@ const StyledName = styled.p`
   font-weight: bold;
   margin: 0;
   position: relative;
-  color: #333;
+  color: var(--text-color);
 
   &::after {
     content: "";

@@ -7,6 +7,7 @@ import Spinner from "./Spinner";
 
 const StyledH1 = styled.h1`
   margin-bottom: 1rem;
+  color: var(--text-color);
 `;
 
 const StyledUserList = styled.div`

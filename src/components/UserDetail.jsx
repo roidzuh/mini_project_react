@@ -12,13 +12,12 @@ const StyledWrapper = styled.div`
 `;
 
 const UserDetailsWrapper = styled.div`
-  background-color: #fff;
+  background-color: var(--secondary-background-color);
   max-width: 600px;
   margin: 0 auto;
   padding: 2rem;
-  border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
 const Avatar = styled.img`
@@ -35,6 +34,7 @@ const UserDetails = styled.div`
 
 const Label = styled.p`
   font-weight: bold;
+  color: var(--text-color);
   margin-bottom: 0.5rem;
   border-bottom: 1px solid #ccc;
   padding-bottom: 0.5rem;

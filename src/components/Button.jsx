@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledButton = styled.button`
   width: 100%;
   padding: 0.8rem;
-  background-color: #009ecb;
+  background-color: var(--button-color);
   color: #fff;
   border: none;
   border-radius: 0.2rem;
@@ -12,7 +12,7 @@ const StyledButton = styled.button`
 
   &:hover {
     cursor: pointer;
-    background-color: #007ba3;
+    background-color: var(--button-hover-color);
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
   }
 

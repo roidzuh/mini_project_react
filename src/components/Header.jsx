@@ -8,7 +8,7 @@ import { HiXMark } from "react-icons/hi2";
 import { HiOutlineBars3 } from "react-icons/hi2";
 
 const HeaderStyle = styled.header`
-  background-color: #fff;
+  background-color: var(--background-color);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -17,10 +17,10 @@ const HeaderStyle = styled.header`
 
 const BurgerButton = styled.button`
   display: none;
-  background: transparent;
+  background: var(--background-color);
   border: none;
   cursor: pointer;
-  color: #000;
+  color: var(--text-color);
   font-size: 1.5rem;
   font-weight: bold;
 
@@ -39,6 +39,7 @@ const NavContainer = styled.div`
 
 const MobileNavContainer = styled.div`
   display: none;
+  background-color: var(--background-color);
 
   @media (max-width: 768px) {
     padding: 0 1rem;
