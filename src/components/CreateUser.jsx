@@ -43,7 +43,7 @@ const CreateUser = () => {
   return (
     <>
       <StyledH1>Create User</StyledH1>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} data-aos="zoom-in">
         <Input
           label="Name"
           name="name"
