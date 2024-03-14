@@ -85,7 +85,7 @@ const UserDetail = () => {
           <Spinner />
         </StyledWrapper>
       ) : (
-        <UserDetailsWrapper>
+        <UserDetailsWrapper data-aos="zoom-in">
           {user && (
             <>
               <Avatar src={user.avatar} alt={user.first_name} />

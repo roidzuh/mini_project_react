@@ -20,7 +20,7 @@ const Login = () => {
   return (
     <WafeContainer>
       <div>
-        <LogoContainer>
+        <LogoContainer data-aos="slide-right">
           <Logo />
         </LogoContainer>
         <LoginForm />

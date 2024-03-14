@@ -45,7 +45,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} data-aos="slide-left">
       <Title>Login</Title>
       <Input
         label="Email"

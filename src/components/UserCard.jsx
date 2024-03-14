@@ -57,7 +57,7 @@ const StyledName = styled.p`
 
 const UserCard = ({ user }) => {
   return (
-    <StyledContainer to={`/user/${user.id}`}>
+    <StyledContainer to={`/user/${user.id}`} data-aos="fade-up">
       <StyledImage src={user.avatar} alt={user.first_name} />
       <StyledName>{`${user.first_name} ${user.last_name}`}</StyledName>
       <p>{user.email}</p>

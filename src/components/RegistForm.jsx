@@ -56,7 +56,7 @@ const RegistForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} data-aos="slide-left">
       <Title>Register</Title>
       <Input
         label="Email"
