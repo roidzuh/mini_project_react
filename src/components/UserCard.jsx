@@ -22,6 +22,11 @@ const UserCard = ({ user, onEdit, onDelete }) => {
     setIsEditing(false);
   };
 
+  const handleClose = () => {
+    setEditedUser({ ...user });
+    setIsEditing(false);
+  };
+
   return (
     <>
       <StyledContainer data-aos="fade-up">
@@ -40,11 +45,7 @@ const UserCard = ({ user, onEdit, onDelete }) => {
         </StyledBtnCont>
       </StyledContainer>
 
-      <Modal
-        isOpen={isEditing}
-        onSave={handleSave}
-        onClose={() => setIsEditing(false)}
-      >
+      <Modal isOpen={isEditing} onSave={handleSave} onClose={handleClose}>
         <Input
           type="text"
           name="first_name"
@@ -83,14 +84,19 @@ const StyledContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  transition: all 0.3s ease-in-out;
 
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
   }
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: var(--text-color);
 `;
 
