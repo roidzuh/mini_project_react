@@ -4,6 +4,9 @@ import styled from "styled-components";
 import { HiOutlineArrowRightOnRectangle } from "react-icons/hi2";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 
+const StyledContainer = styled.div`
+  display: flex;
+`;
 const StyledHeaderMenu = styled.button`
   font-size: 1.5rem;
   color: var(--text-color);
@@ -28,14 +31,14 @@ const HeaderMenu = () => {
   };
 
   return (
-    <>
+    <StyledContainer>
       <StyledHeaderMenu onClick={toggleTheme}>
         {theme === "light" ? <MdDarkMode /> : <MdOutlineLightMode />}
       </StyledHeaderMenu>
       <StyledHeaderMenu onClick={handleLogout}>
         <HiOutlineArrowRightOnRectangle />
       </StyledHeaderMenu>
-    </>
+    </StyledContainer>
   );
 };
 

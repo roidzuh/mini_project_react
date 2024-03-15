@@ -13,6 +13,11 @@ const HeaderStyle = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
 `;
 
 const BurgerButton = styled.button`
@@ -42,10 +47,15 @@ const MobileNavContainer = styled.div`
   background-color: var(--background-color);
 
   @media (max-width: 768px) {
-    padding: 0 1rem;
+    padding: 0 0.2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    top: 110px;
+    left: 0;
+    right: 0;
+    z-index: 998;
   }
 `;
 
