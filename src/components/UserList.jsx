@@ -6,26 +6,6 @@ import Spinner from "./Spinner";
 import Pagination from "./Pagination";
 import toast from "react-hot-toast";
 
-const StyledH1 = styled.h1`
-  margin-bottom: 1rem;
-  color: var(--text-color);
-`;
-
-const StyledUserList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-`;
-
-const StyledDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem;
-`;
-
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -78,13 +58,23 @@ const UserList = () => {
     });
   };
 
+  const handleEdit = (userId, newData) => {
+    setUsers(
+      users.map((user) => (user.id === userId ? { ...user, ...newData } : user))
+    );
+  };
+
+  const handleDelete = (userId) => {
+    setUsers(users.filter((user) => user.id !== userId));
+  };
+
   useEffect(() => {
     getUserList();
   }, [getUserList]);
 
   return (
     <>
-      <StyledH1>Dashboard</StyledH1>
+      <StyledH1>Welcome to UserHub!</StyledH1>
       {loading ? (
         <StyledDiv>
           <Spinner />
@@ -93,7 +83,12 @@ const UserList = () => {
         <>
           <StyledUserList>
             {users.map((user) => (
-              <UserCard key={user.id} user={user} />
+              <UserCard
+                key={user.id}
+                user={user}
+                onEdit={(newData) => handleEdit(user.id, newData)}
+                onDelete={() => handleDelete(user.id)}
+              />
             ))}
           </StyledUserList>
           <StyledDiv>
@@ -113,3 +108,24 @@ const UserList = () => {
 };
 
 export default UserList;
+
+const StyledH1 = styled.h1`
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  text-align: center;
+`;
+
+const StyledUserList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+`;
+
+const StyledDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+`;

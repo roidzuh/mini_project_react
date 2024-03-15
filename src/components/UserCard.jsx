@@ -1,7 +1,76 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Modal from "./Modal";
+import Button from "./Button";
+import Input from "./Input";
 
-const StyledContainer = styled(Link)`
+const UserCard = ({ user, onEdit, onDelete }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedUser, setEditedUser] = useState({ ...user });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditedUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
+  };
+
+  const handleSave = () => {
+    onEdit(editedUser);
+    setIsEditing(false);
+  };
+
+  return (
+    <>
+      <StyledContainer data-aos="fade-up">
+        <StyledLink to={`/user/${user.id}`}>
+          <StyledImage src={user.avatar} alt={user.first_name} />
+          <StyledName>{`${user.first_name} ${user.last_name}`}</StyledName>
+          <p>{user.email}</p>
+        </StyledLink>
+        <StyledBtnCont>
+          <Button onClick={() => setIsEditing(true)} size="small">
+            Edit
+          </Button>
+          <Button onClick={onDelete} size="small">
+            Delete
+          </Button>
+        </StyledBtnCont>
+      </StyledContainer>
+
+      <Modal
+        isOpen={isEditing}
+        onSave={handleSave}
+        onClose={() => setIsEditing(false)}
+      >
+        <Input
+          type="text"
+          name="first_name"
+          value={editedUser.first_name}
+          onChange={handleChange}
+        />
+        <Input
+          type="text"
+          name="last_name"
+          value={editedUser.last_name}
+          onChange={handleChange}
+        />
+        <Input
+          type="email"
+          name="email"
+          value={editedUser.email}
+          onChange={handleChange}
+        />
+      </Modal>
+    </>
+  );
+};
+
+export default UserCard;
+
+const StyledContainer = styled.div`
   background-color: var(--secondary-background-color);
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -13,14 +82,16 @@ const StyledContainer = styled(Link)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: var(--text-color);
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
+  gap: 0.5rem;
 
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease-in-out;
   }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: var(--text-color);
 `;
 
 const StyledImage = styled.img`
@@ -56,15 +127,7 @@ const StyledName = styled.p`
     font-size: 1rem;
   }
 `;
-
-const UserCard = ({ user }) => {
-  return (
-    <StyledContainer to={`/user/${user.id}`} data-aos="fade-up">
-      <StyledImage src={user.avatar} alt={user.first_name} />
-      <StyledName>{`${user.first_name} ${user.last_name}`}</StyledName>
-      <p>{user.email}</p>
-    </StyledContainer>
-  );
-};
-
-export default UserCard;
+const StyledBtnCont = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
