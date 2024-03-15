@@ -14,6 +14,7 @@ const StyledLabel = styled.label`
 
 const StyledInputField = styled.input`
   background-color: var(--secondary-background-color);
+  color: var(--text-color);
   padding: 12px;
   border: 1px solid #595959;
   border-radius: 4px;
