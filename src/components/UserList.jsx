@@ -4,6 +4,7 @@ import styled from "styled-components";
 import UserCard from "./UserCard";
 import Spinner from "./Spinner";
 import Pagination from "./Pagination";
+import toast from "react-hot-toast";
 
 const StyledH1 = styled.h1`
   margin-bottom: 1rem;
@@ -51,7 +52,8 @@ const UserList = () => {
       })
       .catch((err) => {
         setLoading(false);
-        console.log(err.response);
+        toast.error("Something went wrong!");
+        console.log(err?.response);
       });
   }, [pagination.page]);
 

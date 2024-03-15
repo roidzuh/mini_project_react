@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Spinner from "./Spinner";
 import styled from "styled-components";
+import toast from "react-hot-toast";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -72,6 +73,7 @@ const UserDetail = () => {
       .catch((err) => {
         setLoading(false);
         console.log(err?.response);
+        toast.error("Something went wrong!");
       });
   }, [id]);
 
