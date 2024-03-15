@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 const StyledH1 = styled.h1`
   margin-bottom: 1rem;
   color: var(--text-color);
+  text-align: center;
 `;
 
 const CreateUser = () => {
