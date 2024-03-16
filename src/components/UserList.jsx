@@ -1,10 +1,11 @@
-import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import UserCard from "./UserCard";
 import Spinner from "./Spinner";
 import Pagination from "./Pagination";
 import toast from "react-hot-toast";
+import { handleGetUsers } from "../utils/apiAuth";
+import { API_LIST } from "../utils/const";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -16,25 +17,23 @@ const UserList = () => {
     page: 1,
   });
 
-  const getUserList = useCallback(() => {
+  const getUserList = useCallback(async () => {
     setLoading(true);
-    axios
-      .get(`https://reqres.in/api/users?page=${pagination.page}`)
-      .then((res) => {
-        setLoading(false);
-        setUsers(res.data.data);
-        setPagination({
-          per_Page: res.data.per_page,
-          total: res.data.total,
-          total_pages: res.data.total_pages,
-          page: res.data.page,
-        });
-      })
-      .catch((err) => {
-        setLoading(false);
-        toast.error("Something went wrong!");
-        console.log(err?.response);
+    try {
+      const res = await handleGetUsers(API_LIST.USER, pagination.page);
+      setLoading(false);
+      setUsers(res.data.data);
+      setPagination({
+        per_Page: res.data.per_page,
+        total: res.data.total,
+        total_pages: res.data.total_pages,
+        page: res.data.page,
       });
+    } catch (err) {
+      setLoading(false);
+      toast.error("Something went wrong!");
+      console.log(err?.response);
+    }
   }, [pagination.page]);
 
   const handleBack = () => {

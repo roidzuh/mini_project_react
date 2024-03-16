@@ -1,9 +1,10 @@
-import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Spinner from "./Spinner";
 import styled from "styled-components";
 import toast from "react-hot-toast";
+import { handleGetUserDetail } from "../utils/apiAuth";
+import { API_LIST } from "../utils/const";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -62,19 +63,17 @@ const UserDetail = () => {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
-  const getUserDetail = useCallback(() => {
+  const getUserDetail = useCallback(async () => {
     setLoading(true);
-    axios
-      .get(`https://reqres.in/api/users/${id}`)
-      .then((res) => {
-        setLoading(false);
-        setUser(res?.data?.data);
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.log(err?.response);
-        toast.error("Something went wrong!");
-      });
+    try {
+      const res = await handleGetUserDetail(API_LIST.USER, id);
+      setLoading(false);
+      setUser(res?.data?.data);
+    } catch (err) {
+      setLoading(false);
+      console.log(err?.response);
+      toast.error("Something went wrong!");
+    }
   }, [id]);
 
   useEffect(() => {

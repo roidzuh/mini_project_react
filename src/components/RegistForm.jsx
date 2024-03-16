@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { API_LIST } from "../utils/const";
+import { handleRegister } from "../utils/apiAuth";
 import styled from "styled-components";
 import toast from "react-hot-toast";
-import axios from "axios";
 import Button from "./Button";
 import Spinner from "./Spinner";
 import Form from "./Form";
@@ -26,7 +27,7 @@ const RegistForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
@@ -35,24 +36,21 @@ const RegistForm = () => {
     }
 
     setIsLoading(true);
-    axios
-      .post("https://reqres.in/api/register", formData)
-      .then((res) => {
-        setIsLoading(false);
-        const token = res?.data?.token;
-        // localStorage.setItem("access_token", token);
-        if (token) {
-          toast.success("Register successfully");
-          setTimeout(() => {
-            navigate("/login");
-          }, 2500);
-        }
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        console.log(err?.response);
-        toast.error(err?.response?.data?.error);
-      });
+    try {
+      const res = await handleRegister(API_LIST.REGISTER, formData);
+      setIsLoading(false);
+      const token = res?.data?.token;
+      // localStorage.setItem("access_token", token);
+      if (token) {
+        toast.success("Register successfully");
+        setTimeout(() => {
+          navigate("/login");
+        }, 2500);
+      }
+    } catch (err) {
+      setIsLoading(false);
+      toast.error(err?.response?.data?.error);
+    }
   };
 
   return (

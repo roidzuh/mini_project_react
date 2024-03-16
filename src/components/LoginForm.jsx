@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { API_LIST } from "../utils/const";
+import { handleLogin } from "../utils/apiAuth";
 import toast from "react-hot-toast";
 import styled from "styled-components";
 import Button from "./Button";
@@ -22,26 +23,23 @@ const LoginForm = () => {
     setLogin({ ...login, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setIsLoading(true);
-    axios
-      .post("https://reqres.in/api/login", login)
-      .then((res) => {
-        setIsLoading(false);
-        const token = res?.data?.token;
-        localStorage.setItem("access_token", token);
-        localStorage.setItem("user", login.email);
-        if (token) {
-          navigate("/dashboard");
-        }
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        console.log(err?.response);
-        toast.error(err?.response?.data?.error);
-      });
+    try {
+      const res = await handleLogin(API_LIST.LOGIN, login);
+      setIsLoading(false);
+      const token = res?.data?.token;
+      localStorage.setItem("access_token", token);
+      localStorage.setItem("user", login.email);
+      if (token) {
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error?.response?.data?.error);
+    }
   };
 
   return (

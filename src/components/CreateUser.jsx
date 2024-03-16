@@ -1,5 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
+import { handleCreateUser } from "../utils/apiAuth";
+import { API_LIST } from "../utils/const";
 import Button from "./Button";
 import Form from "./Form";
 import Input from "./Input";
@@ -26,7 +27,7 @@ const CreateUser = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!userData.name.trim() || !userData.job.trim()) {
@@ -35,18 +36,16 @@ const CreateUser = () => {
     }
 
     setLoading(true);
-    axios
-      .post("https://reqres.in/api/users", userData)
-      .then((res) => {
-        console.log(res);
-        setUserData({ name: "", job: "" });
-        setLoading(false);
-        toast.success("User created successfully");
-      })
-      .catch((err) => {
-        console.log(err.response);
-        setLoading(false);
-      });
+    try {
+      const res = await handleCreateUser(API_LIST.USER, userData);
+      setUserData({ name: "", job: "" });
+      setLoading(false);
+      toast.success(`User ${res.data.name} created successfully`);
+    } catch (error) {
+      console.log(error.response);
+      setLoading(false);
+      toast.error("Something went wrong");
+    }
   };
 
   return (
